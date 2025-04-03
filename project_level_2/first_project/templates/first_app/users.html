@@ -1,26 +1,22 @@
-{% load static %}
 <!DOCTYPE html>
+{% load bootstrap4 %} {% load crispy_forms_tags %}
 <html>
     <head>
         <meta charset="utf-8">
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <title>Users</title>
-        <link rel="stylesheet" href="{% static 'first_app/style.css' %}">
     </head>
     <body>
-        <h1>List of users</h1>
-        {% if users %}
-            <ol>
-                {% for user in users %}
-                    <li>User Info</li>
-                    <ul>
-                        <li>First Name: {{ user.first_name }}</li>
-                        <li>Last Name: {{ user.last_name }}</li>
-                        <li>Email: {{ user.email }}</li>
-                    </ul>
-                {% endfor %}
-            </ol>
-        {% else %}
-            <p>No users found.</p>
-        {% endif %}
+        <div class="container">
+            <h1>Please sign up!</h1>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <input type="submit" class="btn btn-primary" value="Sign Up"/>
+            </form>
+        </div>
     </body>
 </html>
